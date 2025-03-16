@@ -1,0 +1,75 @@
+@import "./base.css";
+
+.container {
+  inline-size: 100vw;
+  block-size: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  border: solid 2px var(--color-border);
+  border-radius: 6px;
+  padding: 2rem;
+
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  gap: 2rem;
+
+  & div {
+    block-size: 15rem;
+    border: solid 1px var(--color-border);
+  }
+}
+
+form {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: .5rem;
+
+  & input {
+    padding: 0 .4rem;
+    line-height: 1.5rem;
+    font-weight: 700;
+  }
+}
+
+section {
+  min-inline-size: 18rem;
+}
+
+section {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: .2rem;
+  & button {
+    align-self: center;
+    margin-top: 1rem;
+  }
+}
+
+button {
+  align-self: flex-end;
+  border: solid 2px var(--color-border);
+  border-radius: 6px;
+  padding: .6rem 1rem;
+  background-color: var(--color-background-soft);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+& button:hover {
+  border: solid 2px var(--color-border);
+  padding: .6rem 1rem;
+  background-color: var(--color-background-mute);
+  font-weight: 700;
+}
+
+section {
+  text-align: center;
+}

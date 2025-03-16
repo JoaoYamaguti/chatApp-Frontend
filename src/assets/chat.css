@@ -1,0 +1,45 @@
+@import "./base.css";
+
+.container {
+  border: solid 1px var(--color-border);
+  inline-size: 100vw;
+  block-size: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 10fr 20fr;
+  grid-template-rows: 1fr 10fr 1fr;
+}
+header {
+  grid-column: 1/span 3;
+}
+footer {
+  grid-column: 1/span 3;
+}
+
+nav {
+  padding: .5rem 0;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+
+  & div {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+aside {
+  border-left: solid 1px var(--color-border);
+  border-right: solid 1px var(--color-border);
+}
+
+main {
+}
+
+a {
+  color: var(--color-primary);
+}

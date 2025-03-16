@@ -23,11 +23,11 @@ h1 {
   color: var(--color-heading);
 }
 
-.btns {
+nav{
   margin-top: 2rem;
 }
 
-button {
+button, a {
   border: solid 1px var(--color-border);
   border-radius: 6px;
   padding: 1rem 2rem;
@@ -36,6 +36,7 @@ button {
 
   color: var(--color-text);
   font-weight: 700;
+  text-decoration: none;
   cursor: pointer;
 }
 
