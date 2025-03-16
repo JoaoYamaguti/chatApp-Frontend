@@ -1,0 +1,46 @@
+@import './base.css';
+
+.container {
+  inline-size: 100vw;
+  block-size: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  max-inline-size: 60rem;
+  min-inline-size: 15rem;
+  display: flex;
+  place-content: center;
+  border: solid 1px var(--color-border);
+  border-radius: 6px;
+  padding: 2rem;
+}
+
+h1 {
+  color: var(--color-heading);
+}
+
+.btns {
+  margin-top: 2rem;
+}
+
+button {
+  border: solid 1px var(--color-border);
+  border-radius: 6px;
+  padding: 1rem 2rem;
+
+  background-color: var(--color-background-soft);
+
+  color: var(--color-text);
+  cursor: pointer;
+}
+button:hover {
+  border-color: var(--color-border-hover);
+  background-color: var(--color-background-mute);
+}
+
+.img {
+  background-image: url();
+}
