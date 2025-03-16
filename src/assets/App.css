@@ -3,6 +3,7 @@
 .container {
   inline-size: 100vw;
   block-size: 100vh;
+  padding-inline: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,8 +35,10 @@ button {
   background-color: var(--color-background-soft);
 
   color: var(--color-text);
+  font-weight: 700;
   cursor: pointer;
 }
+
 button:hover {
   border-color: var(--color-border-hover);
   background-color: var(--color-background-mute);
@@ -43,4 +46,42 @@ button:hover {
 
 .img {
   background-image: url();
+}
+
+.modal {
+  position: absolute;
+  left: 0;
+  top: 0;
+  inline-size: 100vw;
+  block-size: 100vh;
+  padding-inline: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.685);
+
+  & section {
+    border: solid 1px var(--color-border);
+    border-radius: 6px;
+    background-color: var(--color-background);
+    padding: 2rem;
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  & a {
+    color: var(--color-primary);
+  }
+
+  & button {
+    align-self: flex-end;
+
+    margin-top: 1rem;
+    border: solid 2px var(--color-error);
+    padding: .6rem 1rem;
+    font-weight: 700;
+  }
 }
