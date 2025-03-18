@@ -27,7 +27,7 @@ nav{
   margin-top: 2rem;
 }
 
-button, a {
+button, nav a {
   border: solid 1px var(--color-border);
   border-radius: 6px;
   padding: 1rem 2rem;
@@ -71,11 +71,12 @@ button:hover {
     flex-flow: column nowrap;
     align-items: baseline;
     gap: 1rem;
+
+    & a {
+      color: var(--color-primary);
+    }
   }
 
-  & a {
-    color: var(--color-primary);
-  }
 
   & button {
     align-self: flex-end;

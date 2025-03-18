@@ -1,13 +1,16 @@
-import './assets/base.css'
-
 import { createApp } from 'vue'
-import App from './App.vue'
+import { createRouter, createWebHistory } from 'vue-router'
 
-import { createWebHistory, createRouter } from 'vue-router'
-import HomeView from './views/HomeView.vue'
-import LoginView from "./views/LoginView.vue";
+import App from './App.vue'
 import ChatView from './views/ChatView.vue'
+import HomeView from './views/HomeView.vue'
+import LoginView from './views/LoginView.vue'
 import MetricsView from './views/MetricsView.vue'
+
+import { OhVueIcon, addIcons } from 'oh-vue-icons'
+import { iconsList } from './icons'
+
+import './assets/base.css'
 
 const routes = [
   { path: '/', component: HomeView },
@@ -20,13 +23,13 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 })
-// import { OhVueIcon, addIcons } from "oh-vue-icons";
-// import { FaFlag, RiZhihuFill,IoChatbubblesOutline } from "oh-vue-icons/icons";
 
-// addIcons(FaFlag, RiZhihuFill, IoChatbubblesOutline);
+addIcons(...iconsList)
 
 const app = createApp(App)
+
 app.use(router)
-// app.component("v-icon", OhVueIcon);
+
+app.component('v-icon', OhVueIcon)
 
 app.mount('#app')

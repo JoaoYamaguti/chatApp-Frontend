@@ -52,7 +52,7 @@ onMounted(() => console.log(baseURL))
       <p>
         Tenha certeza que a API esta rodando...
         <br>
-        Para mais informações,acesse:
+        Para mais informações, acesse:
         <a href="https://github.com/JoaoYamaguti/chatApp-backend" target="_blank">chatApp-backend repo</a>
       </p>
       <button @click="handleModal">Fechar</button>

@@ -36,11 +36,12 @@ aside {
   border-left: solid 1px var(--color-border);
   border-right: solid 1px var(--color-border);
 
-  & ul{
-    list-style: none;
-    padding: 1rem;
+}
 
-  }
+& ul{
+  list-style: none;
+  padding: 1rem;
+
 }
 
 main {
