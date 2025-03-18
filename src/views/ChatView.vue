@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
+
+import type { IUser, IChat } from "../lib/interfaces/IChat";
+
 import FooterComponent from "../components/FooterComponent.vue";
 import HeaderComponent from "../components/HeaderComponent.vue";
-import type { IUser, IChat } from "../lib/interfaces/IChat";
 
 const baseURL = import.meta.env.VITE_API_URL
 const token = sessionStorage.getItem("token")
@@ -24,8 +26,6 @@ async function getChats() {
   console.log(res.chats)
 }
 
-getChats()
-
 async function getMessages(id: number) {
 
   const res = await (await fetch(baseURL + `/chat/${id}`,
@@ -42,6 +42,7 @@ async function getMessages(id: number) {
   chat.value = res
 }
 
+getChats()
 </script>
 
 <template>
@@ -50,15 +51,16 @@ async function getMessages(id: number) {
 
     <nav>
       <div>
-        <RouterLink to="/chats">Chat</RouterLink>
-        <RouterLink to="/metrics"><v-icon name="io-bar-chart-sharp"/></RouterLink>
+        <RouterLink to="/chats"><v-icon name="io-chatbubble" /></RouterLink>
+        <RouterLink to="/metrics"><v-icon name="io-bar-chart-sharp" /></RouterLink>
       </div>
-      <div>config</div>
+      <div><v-icon name="io-ellipsis-horizontal" class="configIcon" /></div>
     </nav>
 
     <aside>
       <ul>
         <li v-for="(chat, index) in contacts" :key="index" @click="getMessages(chat.id)">
+          <div class="profileImg">{{ chat.name[0] }}</div>
           <h3>{{ chat.name }}</h3>
         </li>
       </ul>
@@ -66,13 +68,13 @@ async function getMessages(id: number) {
 
     <main>
       <div class="chat" v-if="chat">
-        <div>
-          <div>{{ }}</div>
+        <div class="profile">
+          <div class="profileImg">{{ chat.receiver_user.name[0] }}</div>
           <h3>{{ chat.receiver_user.name }}</h3>
         </div>
         <ul>
-          <li v-for="(message, index) in chat.messages" :key="index">
-            <h3>{{message.content.toString()}}</h3>
+          <li v-for="(message, index) in chat.messages" :key="index" >
+            <p :class="message.user_receiver_id == chat.receiver_user.id ? 'receiverMessage' : 'senderMessage'">{{ message.content.toString() }}</p>
           </li>
         </ul>
       </div>

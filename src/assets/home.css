@@ -13,7 +13,8 @@ main {
   max-inline-size: 60rem;
   min-inline-size: 15rem;
   display: flex;
-  place-content: center;
+  justify-content: space-between;
+  gap: 2rem;
   border: solid 1px var(--color-border);
   border-radius: 6px;
   padding: 2rem;
@@ -23,11 +24,12 @@ h1 {
   color: var(--color-heading);
 }
 
-nav{
+nav {
   margin-top: 2rem;
 }
 
-button, nav a {
+button,
+nav a {
   border: solid 1px var(--color-border);
   border-radius: 6px;
   padding: 1rem 2rem;
@@ -45,8 +47,9 @@ button:hover {
   background-color: var(--color-background-mute);
 }
 
-.img {
-  background-image: url();
+.icon {
+  color: var(--color-text);
+
 }
 
 .modal {
