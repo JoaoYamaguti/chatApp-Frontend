@@ -13,5 +13,6 @@ footer{
   text-indent: .5rem;
   place-content: center;
   border-top: solid 1px var(--color-border);
+  font-size: .7rem;
 }
 </style>

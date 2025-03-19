@@ -6,7 +6,7 @@
   block-size: 100vh;
   display: grid;
   grid-template-columns: 1fr 10fr 20fr;
-  grid-template-rows: 1fr 10fr 1fr;
+  grid-template-rows: 2fr 20fr 1fr;
 }
 
 header {
@@ -43,6 +43,7 @@ nav {
 }
 
 aside {
+  /* block-size: 80%; */
   border-left: solid 1px var(--color-border);
   border-right: solid 1px var(--color-border);
 
@@ -68,18 +69,17 @@ aside {
   }
 }
 
-
 main {
+  padding: .5rem;
 
   & .chat {
     block-size: 100%;
-    padding: 0rem .8rem;
     display: flex;
     flex-flow: column nowrap;
   }
 
   & .profile {
-    padding: .5rem;
+    padding-bottom: .5rem;
 
     display: flex;
     align-items: center;
@@ -89,14 +89,14 @@ main {
   }
 
   & ul {
-    flex: 1;
+    flex: 1 1 0;
     list-style: none;
     padding: .5rem;
-
     display: flex;
     flex-flow: column nowrap;
-    justify-content: flex-end;
     align-items: flex-start;
+
+    overflow-y: scroll;
 
     & li {
       inline-size: 100%;
@@ -105,21 +105,66 @@ main {
       display: flex;
       flex-flow: column nowrap;
 
-      gap: .8rem;
-
-      cursor: pointer;
+      & div{
+        & span {
+          font-size: .75rem;
+          opacity: .6;
+        }
+      }
 
       & .senderMessage {
         align-self: flex-end;
+        text-align: end;
       }
+
       & .receiverMessage {
         align-self: flex-start;
+        text-align: start;
       }
 
     }
 
     & li:hover {
       background-color: var(--color-background-soft);
+    }
+  }
+
+  & form {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: .5rem;
+
+    & input[type="number"] {
+      display: none;
+    }
+
+    & input[type="text"] {
+      flex: 1;
+      block-size: 100%;
+      border: none;
+      border-radius: 20px;
+      padding: .7rem;
+      font-size: 1rem;
+    }
+
+    & button {
+      width: 40px;
+      height: 40px;
+      position: relative;
+      border: none;
+      border-radius: 50%;
+      padding: .4rem;
+
+      background-color: var(--color-primary);
+
+      & svg {
+        position: absolute;
+        top: 12px;
+        left: 9px;
+        scale: 1.3;
+        color: #ffffff;
+      }
     }
   }
 }
