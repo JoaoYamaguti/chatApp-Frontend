@@ -40,9 +40,7 @@ onMounted(() => console.log(baseURL))
         </nav>
       </section>
       <section>
-
           <v-icon class="icon" name="io-chatbubbles" scale="7" animation="float" speed="slow"/>
-
       </section>
     </main>
   </div>

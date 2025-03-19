@@ -26,6 +26,9 @@ h1 {
 
 nav {
   margin-top: 2rem;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: baseline;
 }
 
 button,
@@ -88,5 +91,24 @@ button:hover {
     border: solid 2px var(--color-error);
     padding: .6rem 1rem;
     font-weight: 700;
+  }
+}
+
+@media (max-width: 600px) {
+  main {
+    flex-flow: column-reverse nowrap;
+  }
+
+  svg {
+    align-items: center;
+  }
+
+  nav {
+    align-items: flex-end;
+  }
+
+  section:nth-child(2) {
+    display: flex;
+    justify-content: center;
   }
 }
