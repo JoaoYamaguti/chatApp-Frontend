@@ -3,6 +3,7 @@
 .container {
   inline-size: 100vw;
   block-size: 100vh;
+  padding: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,6 +24,10 @@ main {
     block-size: 15rem;
     border: solid 1px var(--color-border);
   }
+}
+
+.signupMain {
+  flex-flow: row-reverse wrap;
 }
 
 form {
@@ -72,4 +77,37 @@ button {
 
 section {
   text-align: center;
+}
+
+@media (max-width: 800px) {
+  main {
+    flex-flow: column nowrap;
+    align-items: center;
+    & div {
+      inline-size: 90%;
+      block-size: auto;
+      border: solid 1px var(--color-border);
+    }
+  }
+  .signupMain {
+    flex-flow: column wrap;
+  }
+}
+
+@media (max-width: 400px) {
+  main {
+    padding: 1rem .5rem;
+  }
+
+  form {
+
+    gap: .5rem;
+
+    & input {
+      inline-size: 100%;
+      padding: 0 .4rem;
+      line-height: 1.5rem;
+      font-weight: 700;
+    }
+  }
 }

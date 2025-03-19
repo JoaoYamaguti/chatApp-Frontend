@@ -105,7 +105,7 @@ function handlePanel() {
 
 <template>
   <div class="container">
-    <main v-if="loginPanel">
+    <main v-if="loginPanel" class="loginMain">
       <section>
         <form ref="loginForm" @submit.prevent="login">
           <h2>Login</h2>
@@ -118,17 +118,11 @@ function handlePanel() {
       <section>
         <h2>Não tem uma conta?</h2>
         <p>Em poucos passos crie uma conta agora.</p>
-        <button type="button" @click="handlePanel">Sing Up</button>
+        <button @click="handlePanel">Sing Up</button>
       </section>
     </main>
 
-    <main v-else>
-      <section>
-        <h2>Já possui uma conta?</h2>
-        <p>Faz login agora mesmo.</p>
-        <button @click="handlePanel">Login</button>
-      </section>
-      <div></div>
+    <main v-else class="signupMain">
       <section>
         <form ref="signupForm" @submit.prevent="signup">
           <h2>Sign Up</h2>
@@ -137,6 +131,12 @@ function handlePanel() {
           <input type="password" name="password" id="password" placeholder="Senha">
           <button type="submit">Sign Up</button>
         </form>
+      </section>
+      <div></div>
+      <section>
+        <h2>Já possui uma conta?</h2>
+        <p>Faz login agora mesmo.</p>
+        <button @click="handlePanel">Login</button>
       </section>
     </main>
   </div>
