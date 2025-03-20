@@ -11,12 +11,14 @@ import { OhVueIcon, addIcons } from 'oh-vue-icons'
 import { iconsList } from './icons'
 
 import './assets/base.css'
+import ProfileView from './views/ProfileView.vue'
 
 const routes = [
   { path: '/', component: HomeView },
   { path: '/login', component: LoginView },
   { path: '/chat', component: ChatView },
   { path: '/chat/:id', component: ChatView },
+  { path: '/profile', component: ProfileView },
   { path: '/metrics', component: MetricsView },
 ]
 
