@@ -1,23 +1,40 @@
 # chatApp-Frontend
 
-This template should help get you started developing with Vue 3 in Vite.
+Inicialmente este projeto é um teste para a [vaga de Dev Jr.](https://github.com/rhuantac/vaga-dev-voll) da empresa [Voll](https://vollsolutions.com.br/).
 
-## Recommended IDE Setup
+O projeto basicamente consiste em um chat para troca de mensagens entre os usuários.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+#### Diferenciais (Extras Opcionais)
 
-## Type Support for `.vue` Imports in TS
+- [ ] Comunicação em tempo real via WebSocket (uso opcional de ActionCable ou outra tecnologia).
+- [x] Suporte ao envio de arquivos (permitindo anexos como imagens e documentos pequenos).
+- [x] Implementação de paginação na listagem de mensagens para melhor desempenho.
+- [x] Mecanismo de autenticação (por exemplo, JWT) para garantir segurança nas requisições.
+- [x] Criação de um endpoint de métricas (/metrics) com estatísticas sobre mensagens enviadas e usuários ativos.
+- [ ] Processamento assíncrono de mensagens utilizando fila de tarefas (exemplo: Redis + Sidekiq).
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Tecmologias Usadas
+- Vue.js: Biblioteca para construir o Frontend.
+- Axios: Ferramenta para fazer as requisições ao backend.
 
-## Customize configuration
+## **! IMPORTANTE !**
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+O app funcionará corretamente somente se servido backend estiver ativo.
+
+*[Backend Repo](https://github.com/JoaoYamaguti/chatApp-backend)*
 
 ## Project Setup
 
 ```sh
 npm install
+```
+
+### Set Invironment Variable 
+
+Crie o arquivo .env para configurar as seguintes variaveis ambiente:
+
+```
+VITE_API_URL = *the backend API  base url, example: "http://localhost:3000"*
 ```
 
 ### Compile and Hot-Reload for Development
