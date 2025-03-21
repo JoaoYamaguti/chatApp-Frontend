@@ -5,3 +5,4 @@
 <template>
   <main></main>
 </template>
+<style scope src="../assets/metrics.css"></style>

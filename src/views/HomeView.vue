@@ -40,7 +40,7 @@ onMounted(() => console.log(baseURL))
         </nav>
       </section>
       <section>
-          <v-icon class="icon" name="io-chatbubbles" scale="7" animation="float" speed="slow"/>
+        <v-icon class="icon" name="io-chatbubbles" scale="7" animation="float" speed="slow" />
       </section>
     </main>
   </div>
@@ -58,6 +58,4 @@ onMounted(() => console.log(baseURL))
   </div>
 </template>
 
-<style scoped>
-@import "../assets/home.css";
-</style>
+<style scoped src="../assets/home.css"></style>

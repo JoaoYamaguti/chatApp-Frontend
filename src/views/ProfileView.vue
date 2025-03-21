@@ -35,6 +35,4 @@ function editProfile() {
   </div>
 </template>
 
-<style scoped>
-@import "../assets/profile.css";
-</style>
+<style scoped src="../assets/profile.css"></style>

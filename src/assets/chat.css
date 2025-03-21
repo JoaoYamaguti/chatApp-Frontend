@@ -104,7 +104,6 @@ aside {
 
 main {
   padding: .5rem;
-  block-size: 100%;
 
   & .chat {
     block-size: 100%;
@@ -124,6 +123,7 @@ main {
   }
 
   & ul {
+    inline-size: 100%;
     flex: 1 1 0;
     list-style: none;
     padding: .5rem;
@@ -139,6 +139,12 @@ main {
 
       display: flex;
       flex-flow: column nowrap;
+
+      & p {
+        max-inline-size: 20rem;
+        overflow-wrap: break-word;
+        text-align: justify;
+      }
 
       & div {
         & span {
@@ -156,6 +162,20 @@ main {
         align-self: flex-start;
         text-align: start;
       }
+
+      & svg {
+        color: var(--color-text);
+      }
+
+      & .fileLi {
+        border: solid 1px var(--color-border);
+        border-radius: 6px;
+        padding: .3rem .6rem;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        gap: 1rem;
+      }
     }
 
     & li:hover {
@@ -164,6 +184,8 @@ main {
   }
 
   & form {
+    block-size: 40px;
+    inline-size: 100%;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -174,8 +196,8 @@ main {
     }
 
     & input[type="text"] {
+      width: 10px;
       flex: 1;
-      block-size: 100%;
       border: none;
       border-radius: 20px;
       padding: .7rem;
@@ -183,8 +205,8 @@ main {
     }
 
     & button {
+      height: 100%;
       width: 40px;
-      height: 40px;
       position: relative;
       border: none;
       border-radius: 50%;
@@ -229,6 +251,82 @@ main {
 
 a {
   color: var(--color-primary);
+}
+
+.noChat {
+  block-size: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newContactModal {
+  z-index: 2;
+  inline-size: 100vw;
+  block-size: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  background-color: rgba(0, 0, 0, 0.445);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal {
+    border-radius: 6px;
+    padding: 1rem;
+
+    background-color: var(--color-background);
+  }
+
+  & label {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  & input {
+    inline-size: 5rem;
+    border: solid 1px var(--color-border);
+    border-radius: 6px;
+    padding: .5rem;
+    -moz-appearance: textfield;
+    appearance: textfield;
+    margin: 0;
+    background-color: var(--color-background-mute);
+    color: var(--color-text);
+    text-align: center;
+  }
+
+  & input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  & .btns {
+    margin-top: .8rem;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    & button {
+      padding: .5rem;
+      border: solid 1px var(--color-border);
+      border-radius: 6px;
+      background-color: var(--color-background-mute);
+      color: var(--color-text);
+    }
+
+    & .close {
+      border-color: var(--color-error);
+    }
+  }
 }
 
 @media (max-width: 1260px) {
@@ -369,9 +467,6 @@ a {
   main {
     border-top: solid 1px var(--color-border);
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
     & .chat {
       inline-size: 100%;
@@ -390,9 +485,16 @@ a {
 
     & ul {
       flex: .94 1 0;
+
+      & li {
+        & p {
+          max-inline-size: 15rem;
+        }
+      }
     }
 
     & form {
+      height: 40px;
       display: flex;
       flex-flow: row nowrap;
       align-items: center;
@@ -401,18 +503,8 @@ a {
         display: none;
       }
 
-      & input[type="text"] {
-        flex: 1;
-        block-size: 100%;
-        border: none;
-        border-radius: 20px;
-        padding: .7rem;
-        font-size: 1rem;
-      }
-
       & button {
         width: 40px;
-        height: 40px;
         position: relative;
         border: none;
         border-radius: 50%;
@@ -420,13 +512,6 @@ a {
 
         background-color: var(--color-primary);
 
-        & svg {
-          position: absolute;
-          top: 12px;
-          left: 9px;
-          scale: 1.3;
-          color: #ffffff;
-        }
       }
     }
   }

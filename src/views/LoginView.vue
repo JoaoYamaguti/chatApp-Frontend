@@ -54,6 +54,8 @@ async function login() {
 
   if (res.token) {
     sessionStorage.setItem("token", res.token)
+    sessionStorage.setItem("id", res.id)
+
     router.push("/chat")
     return
   }
@@ -143,6 +145,4 @@ function handlePanel() {
   <NotifyComponent v-if="notify.show" :class="notify.class">{{ notify.msg }}</NotifyComponent>
 </template>
 
-<style scoped>
-@import "../assets/login.css";
-</style>
+<style scoped src="../assets/login.css"></style>

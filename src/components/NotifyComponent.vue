@@ -22,6 +22,7 @@ const props = defineProps({
 }
 
 .notif {
+  z-index: 3;
   position: absolute;
   top: -3rem;
   left: 50%;

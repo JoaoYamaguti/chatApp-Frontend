@@ -1,42 +1,60 @@
 <script setup lang="ts">
-import { onMounted, onUpdated, ref, watch } from "vue";
+import { nextTick, onMounted, onUpdated, reactive, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import type { IChat, IUser } from "../lib/interfaces/IChat";
 
 import FooterComponent from "../components/FooterComponent.vue";
 import HeaderComponent from "../components/HeaderComponent.vue";
+import NotifyComponent from "../components/NotifyComponent.vue";
 
 import axios from "axios";
 
 const baseURL = import.meta.env.VITE_API_URL
 const token = sessionStorage.getItem("token")
+const userId = sessionStorage.getItem("id")
 
 const router = useRouter()
 const route = useRoute()
 
 const contacts = ref<IUser[]>()
 const chat = ref<IChat>()
-// const file = ref()
+const newContactId = defineModel<number>()
+const showNewContactModal = ref(false)
 const messageList = ref(null)
 const messageForm = ref(null)
+const notify = reactive({
+  show: false,
+  msg: "",
+  class: "",
+  timerID: setTimeout(() => { }, 0),
+  start: () => {
+    notify.show = true
+    notify.timerID = setTimeout(() => {
+      notify.show = false
+    }, 5000)
+  },
+  cancel: () => {
+    clearTimeout(notify.timerID)
+    notify.show = false
+  }
+})
 
 async function getChats() {
-  const res = await fetch(baseURL + "/chat", {
-    method: "GET",
-    headers: {
-      "Authorization": "Bearer " + token
-    }
-  })
+  try {
+    const res = await axios.get(baseURL + "/chat", {
+      headers: {
+        "Authorization": "Bearer " + token
+      }
+    })
 
-  if (res.status === 401) {
+    contacts.value = res.data.chats
+
+  } catch {
     router.replace('/login')
     return
   }
 
-  const dataRes = await res.json()
-
-  contacts.value = dataRes.chats
 }
 
 function changeChat(id: number) {
@@ -44,32 +62,30 @@ function changeChat(id: number) {
 }
 
 async function getMessages() {
-  const res = await (await fetch(baseURL + `/chat/${route.params.id}`,
-    {
-      method: "GET",
-      headers: {
-        "Authorization": "Bearer " + token
-      }
-    }
-  )).json()
+  if (route.params.id == undefined || route.params.id == null) {
+    return
+  }
 
-  chat.value = res
+  const res = await axios.get(baseURL + `/chat/${route.params.id}`, {
+    headers: {
+      Authorization: "Bearer " + token
+    }
+  })
+
+  chat.value = res.data
+
+  getChats()
 }
 
 async function sendMessage() {
   const data = new FormData(messageForm.value!)
 
-  const res = await (await fetch(baseURL + "/messages/create", {
-    method: "POST",
+  axios.post(baseURL + `/messages/create`, data, {
     headers: {
-      "Authorization": "Bearer " + token
-    },
-    body: data
-  })).json()
-
-  if (res.error) {
-    return
-  }
+      "Authorization": "Bearer " + token,
+      "Content-Type": "multipart/Form-data"
+    }
+  })
 
   getMessages()
 }
@@ -78,22 +94,19 @@ async function sendFile(event: Event) {
   const target = event.target as HTMLInputElement;
   const files = target.files as FileList;
   const file = files[0]
-  console.log(file)
 
   let b64 = ''
 
   if (file) {
     const reader = new FileReader();
 
-    // Quando a leitura do arquivo for concluída
     reader.onloadend = async function () {
-      console.log(reader.result)
-      const base64String = reader.result; // Obtém a parte base64 da string
+      const base64String = reader.result;
 
-      b64 = base64String?.toString() ?? ""; // Aqui você tem o arquivo em base64
+      b64 = base64String?.toString() ?? "";
 
-      const res = await axios.post(baseURL + "/messages/create", {
-        content: b64,
+      await axios.post(baseURL + "/messages/create", {
+        content: file.name + "|" + b64,
         user_receiver_id: chat.value?.receiver_user.id
       }, {
         headers: {
@@ -101,17 +114,40 @@ async function sendFile(event: Event) {
         },
 
       })
-
-      console.log(res)
+      getMessages()
     };
 
-    // Lê o arquivo como uma URL de dados
     reader.readAsDataURL(file);
-
   }
+}
 
+async function handleNewContactModal() {
+  showNewContactModal.value = !showNewContactModal.value
+  await nextTick()
+}
 
-  getMessages()
+async function addChat() {
+  try {
+    const res = await axios.get(baseURL + `/users/show/${newContactId.value}`)
+
+    const user = res.data as IUser
+
+    if (Number(userId) === user.id) {
+      notify.msg = "Usuário não encontrado."
+      notify.class = "error"
+      notify.start()
+      return
+    }
+
+    router.push(`/chat/${user.id}`)
+    handleNewContactModal()
+
+  } catch {
+    notify.msg = "Usuário não encontrado."
+    notify.class = "error"
+    notify.start()
+    return
+  }
 }
 
 getChats()
@@ -123,6 +159,12 @@ onUpdated(() => {
 
   if (messageList) {
     messageList.scrollTop = messageList.scrollHeight
+  }
+
+  const content = document.querySelector("#content")
+  if (content) {
+    content.innerHTML = ""
+
   }
 })
 
@@ -150,7 +192,7 @@ watch(() => route.params.id, getMessages)
           <div class="profileImg">{{ chat.name[0] }}</div>
           <h3>{{ chat.name }}</h3>
         </li>
-        <li>
+        <li @click="handleNewContactModal">
           <div>+</div>
         </li>
       </ul>
@@ -166,8 +208,12 @@ watch(() => route.params.id, getMessages)
           <li v-for="(message, index) in chat.messages" :key="index">
             <div class="message"
               :class="message.user_receiver_id === chat.receiver_user.id ? 'senderMessage' : 'receiverMessage'">
-              <p>{{
+              <p v-if="!message.content.includes('base64')">{{
                 message.content.toString() }}</p>
+              <div v-else class="fileLi">
+                <p>{{ message.content.split('|')[0] }}</p>
+                <a :href="message.content.split(`|`)[1]" download="true"><v-icon name="io-download" /></a>
+              </div>
               <span>{{ message.created_at.split("T")[1].slice(0, 5) }}</span>
             </div>
           </li>
@@ -190,11 +236,23 @@ watch(() => route.params.id, getMessages)
         <p>No chat active</p>
       </div>
     </main>
-
     <FooterComponent />
+  </div>
+
+  <NotifyComponent v-if="notify.show" :class="notify.class">{{ notify.msg }}</NotifyComponent>
+
+  <div class="newContactModal" v-if="showNewContactModal" @click="handleNewContactModal">
+    <div class="modal" @click.stop="">
+      <label for="newContactId">
+        Id:
+        <input type="number" name="newContactId" id="newContactId" v-model="newContactId" :min="0">
+      </label>
+      <div class="btns">
+        <button type="button" class="close" @click="handleNewContactModal">Fechar</button>
+        <button type="button" @click="addChat">+ Novo Chat</button>
+      </div>
+    </div>
   </div>
 </template>
 
-<style scoped>
-@import "../assets/chat.css";
-</style>
+<style scoped src="../assets/chat.css"></style>
