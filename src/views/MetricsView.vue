@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import FooterComponent from '@/components/FooterComponent.vue';
-import HeaderComponent from '@/components/HeaderComponent.vue';
+import FooterComponent from '../components/FooterComponent.vue';
+import HeaderComponent from '../components/HeaderComponent.vue';
 import axios from "axios";
+import { ref } from 'vue';
 
 const baseURL = import.meta.env.VITE_API_URL
 
@@ -10,15 +10,13 @@ const metrics = ref()
 
 async function getMetrics() {
   try {
-    const res = await axios.get(baseURL + "/metrics", )
-    console.log(res)
-    metrics.value = res.data as string
-    console.log(metrics.value)
+    const res = await axios.get(baseURL + "/metrics",)
 
+    metrics.value = res.data
+    return
   } catch (error) {
     console.log(error)
   }
-
 }
 
 getMetrics()
@@ -39,10 +37,10 @@ getMetrics()
     </nav>
 
     <main>
-      <p v-if="metrics">
-        {{ metrics.value }}
-      </p>
-
+      <blockquote>
+        <pre v-if="metrics">{{ metrics }}</pre>
+        <pre v-else>Loading...</pre>
+      </blockquote>
     </main>
 
     <FooterComponent />

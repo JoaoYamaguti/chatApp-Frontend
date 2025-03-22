@@ -394,6 +394,7 @@ a {
   }
 
   nav {
+    border: none;
     padding: .5rem;
 
     display: flex;

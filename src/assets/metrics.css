@@ -60,20 +60,20 @@ nav {
 }
 
 main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 1rem;
+}
 
-  & form {
-    display: flex;
-    flex-flow: column nowrap;
-    gap: .5rem;
-
-    gap & button {
-      align-self: flex-end;
-    }
-  }
-
+blockquote {
+  inline-size: 100%;
+  block-size: 100%;
+  background-color: black;
+  font-family: sans-serif;
+  color: white;
+  padding: .5rem;
+  overflow-y: scroll;
+}
+pre {
+  color: white;
 }
 
 a {
