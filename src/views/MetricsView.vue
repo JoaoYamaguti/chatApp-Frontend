@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import FooterComponent from '../components/FooterComponent.vue';
-import HeaderComponent from '../components/HeaderComponent.vue';
 import axios from "axios";
 import { ref } from 'vue';
+import FooterComponent from '../components/FooterComponent.vue';
+import HeaderComponent from '../components/HeaderComponent.vue';
 
 const baseURL = import.meta.env.VITE_API_URL
 

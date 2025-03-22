@@ -7,18 +7,32 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="notif" >
-    <span :class="props.class"><slot></slot></span>
+  <div class="notif">
+    <span :class="props.class">
+      <slot></slot>
+    </span>
   </div>
 </template>
 
 <style scoped>
 @keyframes notifyMove {
   0% {}
-  20% {top: 4rem}
-  50% {top: 4rem}
-  70% {top: 4rem}
-  100% {top: -4rem}
+
+  20% {
+    top: 4rem
+  }
+
+  50% {
+    top: 4rem
+  }
+
+  70% {
+    top: 4rem
+  }
+
+  100% {
+    top: -4rem
+  }
 }
 
 .notif {
@@ -40,7 +54,7 @@ const props = defineProps({
   gap: .5rem;
 
   background-color: var(--color-background);
-  animation: notifyMove normal 5s ;
+  animation: notifyMove normal 5s;
 }
 
 span {
@@ -54,6 +68,7 @@ button {
 .ok {
   color: var(--color-ok)
 }
+
 .error {
   color: var(--color-error);
 }

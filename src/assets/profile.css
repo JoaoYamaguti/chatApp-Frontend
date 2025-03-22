@@ -77,6 +77,7 @@ main {
       line-height: 1.5rem;
       /* font-weight: 700; */
     }
+
     & input:disabled {
       background-color: rgb(196, 196, 196);
     }
@@ -90,6 +91,7 @@ main {
       background-color: var(--color-background-soft);
       color: var(--color-text);
     }
+
     & button:hover {
       background-color: var(--color-background-mute);
 
@@ -168,8 +170,10 @@ a {
       color: var(--color-text);
     }
   }
+
   form {
     inline-size: 80%;
+
     & input {
       font-size: 1.2rem;
       block-size: 30px;
