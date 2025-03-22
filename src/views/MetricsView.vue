@@ -2,7 +2,6 @@
 import { ref } from 'vue';
 import FooterComponent from '@/components/FooterComponent.vue';
 import HeaderComponent from '@/components/HeaderComponent.vue';
-import type IMetrics from '@/lib/interfaces/IMetrics';
 import axios from "axios";
 
 const baseURL = import.meta.env.VITE_API_URL
@@ -11,11 +10,10 @@ const metrics = ref()
 
 async function getMetrics() {
   try {
-    const res = await axios.get(baseURL + "/metrics", {})
+    const res = await axios.get(baseURL + "/metrics", )
     console.log(res)
-    metrics.value = await res.data
+    metrics.value = res.data as string
     console.log(metrics.value)
-
 
   } catch (error) {
     console.log(error)

@@ -134,7 +134,22 @@ main {
 
     overflow-y: scroll;
 
-    & li {
+    & .loadMore {
+      inline-size: 100%;
+      text-align: center;
+
+      & span {
+        text-decoration: dashed;
+        cursor: pointer;
+      }
+      & span:hover {
+        align-self: center;
+        font-weight: 500;
+
+      }
+    }
+
+    & .messageLi {
       inline-size: 100%;
       padding: .5rem .3rem;
 
@@ -179,7 +194,7 @@ main {
       }
     }
 
-    & li:hover {
+    & .messageLi:hover {
       background-color: var(--color-background-soft);
     }
   }

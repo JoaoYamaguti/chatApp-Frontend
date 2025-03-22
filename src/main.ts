@@ -6,12 +6,12 @@ import ChatView from './views/ChatView.vue'
 import HomeView from './views/HomeView.vue'
 import LoginView from './views/LoginView.vue'
 import MetricsView from './views/MetricsView.vue'
+import ProfileView from './views/ProfileView.vue'
 
 import { OhVueIcon, addIcons } from 'oh-vue-icons'
 import { iconsList } from './icons'
 
 import './assets/base.css'
-import ProfileView from './views/ProfileView.vue'
 
 const routes = [
   { path: '/', component: HomeView },

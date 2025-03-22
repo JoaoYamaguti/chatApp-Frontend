@@ -5,7 +5,8 @@ export interface IUser {
 }
 
 export interface IChat {
-  receiver_user: IUser,
+  receiver_user: IUser
+  totalMessages: number
   messages: [{
       user_sender_id: number
 			user_receiver_id: number

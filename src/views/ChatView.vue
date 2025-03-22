@@ -19,9 +19,9 @@ const route = useRoute()
 
 const contacts = ref<IUser[]>()
 const chat = ref<IChat>()
+const page = ref(1)
 const newContactId = ref<number>()
 const contentText = ref<string>()
-
 const showNewContactModal = ref(false)
 const messageList = ref(null)
 const messageForm = ref(null)
@@ -60,6 +60,7 @@ async function getChats() {
 }
 
 function changeChat(id: number) {
+  page.value = 1
   router.replace(`/chat/${id}`)
 }
 
@@ -68,7 +69,8 @@ async function getMessages() {
     return
   }
 
-  const res = await axios.get(baseURL + `/chat/${route.params.id}`, {
+
+  const res = await axios.get(baseURL + `/chat/${route.params.id}?page=${page.value}`, {
     headers: {
       Authorization: "Bearer " + token
     }
@@ -77,6 +79,12 @@ async function getMessages() {
   chat.value = res.data
 
   getChats()
+}
+
+function increasePage() {
+  page.value = page.value + 1
+  console.log(page.value)
+  getMessages()
 }
 
 async function sendMessage() {
@@ -209,7 +217,8 @@ watch(() => route.params.id, getMessages)
           <h3>{{ chat.receiver_user.name }}</h3>
         </div>
         <ul ref="messageList" id="messageList">
-          <li v-for="(message, index) in chat.messages" :key="index">
+          <li v-if="chat.totalMessages !== chat.messages.length" class="loadMore" @click="increasePage"><span>Carregar mais mensagens...</span></li>
+          <li v-for="(message, index) in chat.messages" :key="index" class="messageLi">
             <div class="message"
               :class="message.user_receiver_id === chat.receiver_user.id ? 'senderMessage' : 'receiverMessage'">
               <p v-if="!message.content.includes('base64')">{{
