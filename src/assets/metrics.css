@@ -7,7 +7,7 @@
   max-width: 100%;
   max-height: 100%;
   display: grid;
-  grid-template-columns: 1fr 20fr;
+  grid-template-columns: 1fr 30fr;
   grid-template-rows: 2fr 20fr 1fr;
 
   overflow: hidden;
@@ -83,13 +83,13 @@ a {
 
 @media (max-width: 1260px) {
   .container {
-    grid-template-columns: 2fr 14fr 28fr;
+    grid-template-columns: 2fr 42fr;
   }
 }
 
 @media (max-width: 800px) {
   .container {
-    grid-template-columns: 3fr 18fr 30fr;
+    grid-template-columns: 3fr 48fr ;
   }
 }
 

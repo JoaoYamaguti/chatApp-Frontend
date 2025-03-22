@@ -2,7 +2,7 @@
 :root {
   --color-primary: #3C3FE6;
   --color-error: #dc3545;
-  --color-ok: ;
+  --color-ok: green;
 
   --vt-c-white: #ffffff;
   --vt-c-white-soft: #f8f8f8;

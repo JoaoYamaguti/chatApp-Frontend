@@ -15,16 +15,16 @@ const props = defineProps({
 <style scoped>
 @keyframes notifyMove {
   0% {}
-  20% {top: 3rem}
-  50% {top: 3rem}
-  70% {top: 3rem}
-  100% {top: -3rem}
+  20% {top: 4rem}
+  50% {top: 4rem}
+  70% {top: 4rem}
+  100% {top: -4rem}
 }
 
 .notif {
   z-index: 3;
   position: absolute;
-  top: -3rem;
+  top: -4rem;
   left: 50%;
   transform: translateX(-50%);
 
@@ -51,6 +51,9 @@ button {
   align-self: flex-end;
 }
 
+.ok {
+  color: var(--color-ok)
+}
 .error {
   color: var(--color-error);
 }

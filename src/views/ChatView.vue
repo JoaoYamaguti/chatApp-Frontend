@@ -194,7 +194,7 @@ watch(() => route.params.id, getMessages)
         <RouterLink to="/metrics"><v-icon name="io-bar-chart-sharp" /></RouterLink>
       </div>
       <div>
-        <div><v-icon name="io-person" class="configIcon" /></div>
+        <RouterLink to="/profile"><v-icon name="io-person" class="configIcon" /></RouterLink>
       </div>
     </nav>
 
