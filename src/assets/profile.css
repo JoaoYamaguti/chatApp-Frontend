@@ -59,6 +59,7 @@ nav {
 }
 
 main {
+  padding: 1rem;
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -165,6 +166,13 @@ a {
 
     & .configIcon {
       color: var(--color-text);
+    }
+  }
+  form {
+    inline-size: 80%;
+    & input {
+      font-size: 1.2rem;
+      block-size: 30px;
     }
   }
 }
