@@ -107,6 +107,7 @@ main {
 
   & .chat {
     block-size: 100%;
+    inline-size: 100%;
 
     display: flex;
     flex-flow: column nowrap;
@@ -244,8 +245,9 @@ main {
   height: 40px;
   border: solid 1px var(--color-border);
   border-radius: 50%;
-  place-content: center;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 a {
@@ -414,7 +416,7 @@ a {
       display: flex;
       flex-flow: row nowrap;
       align-items: center;
-      gap: 1rem;
+      gap: .5rem;
 
       overflow-x: scroll;
       scrollbar-width: none;
@@ -427,9 +429,8 @@ a {
         align-items: center;
         gap: .1rem;
 
-        /* border-right: solid 1px var(--color-border); */
         border-bottom: none;
-
+        font-size: .8rem;
         cursor: pointer;
       }
 
@@ -438,7 +439,8 @@ a {
       }
 
       & li:last-child {
-        inline-size: auto;
+        inline-size: 40px;
+        height: 100%;
         display: flex;
         justify-content: center;
         font-size: 1.5rem;
@@ -455,12 +457,8 @@ a {
   }
 
   .profileImg {
-    width: 30px;
-    height: 30px;
-    border: solid 1px var(--color-border);
-    border-radius: 50%;
-    place-content: center;
-    text-align: center;
+    width: 25px;
+    height: 25px;
   }
 
   main {
@@ -489,28 +487,6 @@ a {
         & p {
           max-inline-size: 15rem;
         }
-      }
-    }
-
-    & form {
-      height: auto;
-      display: flex;
-      flex-flow: row nowrap;
-      align-items: center;
-
-      & input[type="number"] {
-        display: none;
-      }
-
-      & button {
-        width: 40px;
-        position: relative;
-        border: none;
-        border-radius: 50%;
-        padding: .4rem;
-
-        background-color: var(--color-primary);
-
       }
     }
   }

@@ -170,13 +170,6 @@ onUpdated(() => {
   if (messageList) {
     messageList.scrollTop = messageList.scrollHeight
   }
-
-  // console.log("apaguei")
-  // const content = document.querySelector("#content")
-  // if (content) {
-  //   content.innerHTML = ""
-
-  // }
 })
 
 watch(() => route.params.id, getMessages)
@@ -204,7 +197,7 @@ watch(() => route.params.id, getMessages)
           <h3>{{ chat.name }}</h3>
         </li>
         <li @click="handleNewContactModal">
-          <div>+</div>
+          +
         </li>
       </ul>
     </aside>
@@ -253,16 +246,16 @@ watch(() => route.params.id, getMessages)
   <NotifyComponent v-if="notify.show" :class="notify.class">{{ notify.msg }}</NotifyComponent>
 
   <div class="newContactModal" v-if="showNewContactModal" @click="handleNewContactModal">
-    <div class="modal" @click.stop="">
+    <form class="modal" @submit.prevent="addChat" @click.stop="">
       <label for="newContactId">
         Id:
         <input type="number" name="newContactId" id="newContactId" v-model="newContactId" :min="0">
       </label>
       <div class="btns">
         <button type="button" class="close" @click="handleNewContactModal">Fechar</button>
-        <button type="button" @click="addChat">+ Novo Chat</button>
+        <button type="submit">+ Novo Chat</button>
       </div>
-    </div>
+    </form>
   </div>
 </template>
 

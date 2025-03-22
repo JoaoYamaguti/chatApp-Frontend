@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import NotifyComponent from '@/components/NotifyComponent.vue';
+import axios from 'axios';
 import { nextTick, reactive, ref } from 'vue';
 import { useRouter } from "vue-router";
 
@@ -40,23 +41,20 @@ async function login() {
     return
   }
 
-  const res = await (await fetch(baseURL + "/login", {
-    method: "POST",
-    body: data
-  })).json()
+  try {
+    const res = await axios.post(baseURL + "/login", data)
 
-  if (res.error) {
+    const { token, id } = res.data
+    sessionStorage.setItem("token", token)
+    sessionStorage.setItem("id", id)
+
+    router.push("/chat")
+    return
+
+  } catch {
     notify.msg = "E-mail ou senha incorreto."
     notify.class = "error"
     notify.start()
-    return
-  }
-
-  if (res.token) {
-    sessionStorage.setItem("token", res.token)
-    sessionStorage.setItem("id", res.id)
-
-    router.push("/chat")
     return
   }
 }
@@ -75,27 +73,20 @@ async function signup() {
     return
   }
 
-  const resSignup = await (await fetch(baseURL + "/users/create", {
-    method: "POST",
-    body: data
-  })).json()
+  try {
+    await axios.post(baseURL + "/users/create", data)
 
+    const resLogin = await axios.post(baseURL + "/login", data)
 
-  if (resSignup.error) {
+    const { token, id } = resLogin.data
+    sessionStorage.setItem("token", token)
+    sessionStorage.setItem("id", id)
+    router.push("/chat")
+
+  } catch {
     notify.msg = "Este e-mail já está sendo usado."
     notify.class = "error"
     notify.start()
-    return
-  }
-
-  const resLogin = await (await fetch(baseURL + "/login", {
-    method: "POST",
-    body: data
-  })).json()
-
-  if (resLogin.token) {
-    sessionStorage.setItem("token", resLogin.token)
-    router.push("/chat")
     return
   }
 }

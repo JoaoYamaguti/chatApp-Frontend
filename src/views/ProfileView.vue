@@ -2,6 +2,9 @@
 import FooterComponent from '@/components/FooterComponent.vue';
 import HeaderComponent from '@/components/HeaderComponent.vue';
 
+const userId = sessionStorage.getItem("id")
+
+
 function editProfile() {
   return
 }
@@ -23,6 +26,7 @@ function editProfile() {
     </nav>
 
     <main>
+      <h2>Id: {{ userId }}</h2>
       <form @submit="editProfile">
         <input type="name" name="name" id="name" placeholder="Name">
         <input type="email" name="email" id="email" placeholder="E-mail">

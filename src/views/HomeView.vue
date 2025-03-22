@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import axios from "axios";
 import { onMounted, ref } from "vue";
 import { RouterLink } from "vue-router";
 
@@ -8,11 +9,11 @@ const showModal = ref(false)
 
 async function fetchData() {
   APIon.value = false
-  const res = await (await fetch(baseURL + "/metrics")).json()
-  console.log(res)
-  if (res != null) {
-    APIon.value = true
+  const res = await axios.get(baseURL + "/up")
+  if (res.status != 200) {
+    return
   }
+  APIon.value = true
 }
 
 fetchData()
@@ -45,7 +46,7 @@ onMounted(() => console.log(baseURL))
     </main>
   </div>
   <div class="modal" v-if="showModal" @click="handleModal">
-    <section @click="(e: Event) => e.stopPropagation()">
+    <section @click.stop="">
       <h2>API Error</h2>
       <p>
         Tenha certeza que a API esta rodando...
