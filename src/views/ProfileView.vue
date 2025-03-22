@@ -36,7 +36,6 @@ async function getUser() {
 async function editProfile() {
   const data = new FormData(form.value)
 
-
   if (data.get("password") != "") {
     if (data.get("password") !== data.get("confirmPassword")) {
       notify.msg = "Confirme sua nova senha."
@@ -48,7 +47,6 @@ async function editProfile() {
     data.delete("password")
     data.delete("confirmPassword")
   }
-  data.entries().forEach(e => console.log(e));
 
   await axios.post(baseURL + `/users/edit`, data,
     {
