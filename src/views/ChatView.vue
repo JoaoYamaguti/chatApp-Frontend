@@ -65,16 +65,17 @@ function changeChat(id: number) {
 }
 
 async function getMessages() {
+  console.log("chegeui")
   if (route.params.id == undefined || route.params.id == null) {
     return
   }
-
 
   const res = await axios.get(baseURL + `/chat/${route.params.id}?page=${page.value}`, {
     headers: {
       Authorization: "Bearer " + token
     }
   })
+
 
   chat.value = res.data
 
@@ -83,14 +84,13 @@ async function getMessages() {
 
 function increasePage() {
   page.value = page.value + 1
-  console.log(page.value)
   getMessages()
 }
 
 async function sendMessage() {
   const data = new FormData(messageForm.value!)
 
-  axios.post(baseURL + `/messages/create`, data, {
+  await axios.post(baseURL + `/messages/create`, data, {
     headers: {
       "Authorization": "Bearer " + token,
       "Content-Type": "multipart/Form-data"
@@ -98,6 +98,7 @@ async function sendMessage() {
   })
 
   contentText.value = ""
+
 
   getMessages()
 }
