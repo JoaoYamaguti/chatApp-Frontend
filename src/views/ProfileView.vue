@@ -4,6 +4,7 @@ import HeaderComponent from '@/components/HeaderComponent.vue';
 import NotifyComponent from '@/components/NotifyComponent.vue';
 import axios from 'axios';
 import { reactive, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 const baseURL = import.meta.env.VITE_API_URL
 const token = sessionStorage.getItem("token")
@@ -28,9 +29,14 @@ const notify = reactive({
 })
 
 async function getUser() {
-  const res = await axios.get(baseURL + `/users/show/${userId}`)
+  const router = useRouter()
+  try {
+    const res = await axios.get(baseURL + `/users/show/${userId}`)
 
-  user.value = res.data
+    user.value = res.data
+  } catch {
+    router.push("/login")
+  }
 }
 
 async function editProfile() {

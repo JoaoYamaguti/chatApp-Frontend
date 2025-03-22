@@ -46,4 +46,4 @@ getMetrics()
     <FooterComponent />
   </div>
 </template>
-<style scope src="../assets/metrics.css"></style>
+<style scoped src="../assets/metrics.css"></style>

@@ -35,6 +35,7 @@ footer {
 
 nav {
   padding: .5rem 0;
+  border-right: solid 1px var(--color-border);
 
   display: flex;
   flex-flow: column nowrap;
