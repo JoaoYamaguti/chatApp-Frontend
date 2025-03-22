@@ -184,8 +184,6 @@ main {
   }
 
   & form {
-    block-size: 40px;
-    inline-size: 100%;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -202,6 +200,7 @@ main {
       border-radius: 20px;
       padding: .7rem;
       font-size: 1rem;
+      overflow-wrap: break-word;
     }
 
     & button {
@@ -494,7 +493,7 @@ a {
     }
 
     & form {
-      height: 40px;
+      height: auto;
       display: flex;
       flex-flow: row nowrap;
       align-items: center;

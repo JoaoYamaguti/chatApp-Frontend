@@ -19,7 +19,9 @@ const route = useRoute()
 
 const contacts = ref<IUser[]>()
 const chat = ref<IChat>()
-const newContactId = defineModel<number>()
+const newContactId = ref<number>()
+const contentText = ref<string>()
+
 const showNewContactModal = ref(false)
 const messageList = ref(null)
 const messageForm = ref(null)
@@ -87,6 +89,8 @@ async function sendMessage() {
     }
   })
 
+  contentText.value = ""
+
   getMessages()
 }
 
@@ -127,6 +131,12 @@ async function handleNewContactModal() {
 }
 
 async function addChat() {
+  if (newContactId.value == userId?.toString()) {
+    notify.msg = "Você está louco? quer conversar com você mesmo?"
+    notify.class = "error"
+    notify.start()
+    return
+  }
   try {
     const res = await axios.get(baseURL + `/users/show/${newContactId.value}`)
 
@@ -161,11 +171,12 @@ onUpdated(() => {
     messageList.scrollTop = messageList.scrollHeight
   }
 
-  const content = document.querySelector("#content")
-  if (content) {
-    content.innerHTML = ""
+  // console.log("apaguei")
+  // const content = document.querySelector("#content")
+  // if (content) {
+  //   content.innerHTML = ""
 
-  }
+  // }
 })
 
 watch(() => route.params.id, getMessages)
@@ -220,7 +231,7 @@ watch(() => route.params.id, getMessages)
         </ul>
         <form ref="messageForm" @submit.prevent="sendMessage">
           <input type="number" name="user_receiver_id" id="user_receiver_id" :value="chat.receiver_user.id">
-          <input type="text" name="content" id="content">
+          <input type="text" name="content" id="content" v-model="contentText" placeholder="message...">
           <button type="button" class="attach">
             <label for="file">
               <v-icon name="io-document-attach-sharp" />
