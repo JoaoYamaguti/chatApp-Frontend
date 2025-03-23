@@ -1,8 +1,22 @@
 # chatApp-Frontend
 
-Inicialmente este projeto é um teste para a [vaga de Dev Jr.](https://github.com/rhuantac/vaga-dev-voll) da empresa [Voll](https://vollsolutions.com.br/).
+Inicialmente este projeto nasceu para ser um teste, onde o projeto basicamente consiste em um chat para troca de mensagens entre os usuários.
 
-O projeto basicamente consiste em um chat para troca de mensagens entre os usuários.
+## Features
+-  Login com email e senha.
+-  Autenticação JWT.
+-  Edição das informações do perfil.
+
+  ![chatApp-login](https://github.com/user-attachments/assets/c27d3dd9-9e17-4295-a8e7-6a8d8d26a8fa)
+  
+-  Troca de mensagem entre os usuários.
+
+  ![chatApp-Chating](https://github.com/user-attachments/assets/af6e0952-6cce-4b25-a176-a2c49c897b58)
+
+
+-  Layout Responsivo.
+
+   ![chatApp-mobile](https://github.com/user-attachments/assets/7a93788b-5795-4c3e-80f2-810f13c4bbfa)
 
 #### Diferenciais (Extras Opcionais)
 
@@ -19,7 +33,7 @@ O projeto basicamente consiste em um chat para troca de mensagens entre os usuá
 
 ## **! IMPORTANTE !**
 
-O app funcionará corretamente somente se servido backend estiver ativo.
+O app funcionará corretamente somente se o servido backend estiver ativo.
 
 *[Backend Repo](https://github.com/JoaoYamaguti/chatApp-backend)*
 
