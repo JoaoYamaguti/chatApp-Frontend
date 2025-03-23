@@ -27,7 +27,7 @@ Inicialmente este projeto nasceu para ser um teste, onde o projeto basicamente c
 - [x] Criação de um endpoint de métricas (/metrics) com estatísticas sobre mensagens enviadas e usuários ativos.
 - [ ] Processamento assíncrono de mensagens utilizando fila de tarefas (exemplo: Redis + Sidekiq).
 
-## Tecmologias Usadas
+## Tecnologias Usadas
 - Vue.js: Biblioteca para construir o Frontend.
 - Axios: Ferramenta para fazer as requisições ao backend.
 
@@ -43,7 +43,7 @@ O app funcionará corretamente somente se o servido backend estiver ativo.
 npm install
 ```
 
-### Set Invironment Variable 
+### Set Environment Variable 
 
 Crie o arquivo .env para configurar as seguintes variaveis ambiente:
 
